@@ -1,0 +1,63 @@
+{
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/api/ds/user",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44354
+        }
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      },
+      "AddHeadersToRequest": {
+        "claim_email": "Claims[email] > value > |",
+        "claim_email_verified": "Claims[email_verified] > value > |"
+      },
+      "UpstreamPathTemplate": "/user",
+      "UpstreamHttpMethod": [ "GET", "PUT" ],
+      "SwaggerKey": "User"
+    },
+    {
+      "DownstreamPathTemplate": "/api/ds/server",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44363
+        }
+      ],
+      "UpstreamPathTemplate": "/server",
+      "UpstreamHttpMethod": [ "GET" ],
+      "SwaggerKey": "Server"
+    }
+  ],
+  "SwaggerEndpoints": [
+    {
+      "Key": "User",
+      "Config": [
+        {
+          "Name": "User API",
+          "Version": "v1",
+          "Url": "https://localhost:44354/swagger/v1/swagger.json"
+        }
+      ]
+    },
+    {
+      "Key": "Server",
+      "Config": [
+        {
+          "Name": "Matchmaking API",
+          "Version": "v1",
+          "Url": "https://localhost:44363/swagger/v1/swagger.json"
+        }
+      ]
+    }
+  ],
+  "GlobalConfiguration": {
+    "BaseUrl":  "https://localhost:44349"
+  }
+}
